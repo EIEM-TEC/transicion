@@ -1,6 +1,9 @@
 from datetime import datetime
 import pandas as pd
 
+mallaMI = pd.read_csv("MI1313.csv")
+equiv = pd.read_csv("cursos_equiv.csv")
+
 def calcular_semestres(desde_año):
     año_actual = datetime.now().year
     semestres = ((año_actual - desde_año) * 2)+1
@@ -30,35 +33,39 @@ def contar_filas_y_listar_codigos_por_semestre(ruta_csv, semestres_maximos):
         print(f"Error procesando el archivo: {e}")
         return 0, []
 
-def obtener_coincidencias_completas(codigos_validos, equivalencias_csv):
+def obtener_coincidencias_individuales(semestre, mallaMI, equiv):
     """
-    Revisa fila por fila en cursos_equiv.csv si todos los codigos de codigoIM (separados por ';')
-    están en codigos_validos (lista de MI1313.csv).
-    Retorna la cantidad de coincidencias y la lista de codigoEE que cumplen la condición.
+    Analiza cada códigoIM por separado, incluso si están en la misma fila separados por ';'.
+    Guarda coincidencias individuales en un CSV.
     """
-    df_equiv = pd.read_csv(equivalencias_csv)
-    coincidencias = []
+    mallaMI = mallaMI[(mallaMI.semestre <= semestre) & (mallaMI.semestre != 0)].copy()
+    listaMI = mallaMI.codigo.to_list()
+    equivOK = []
+    equivfil = equiv.copy()
+    equivfil["codigoMI"] = equivfil["codigoMI"].str.split(";",expand=False)    
 
-    for _, fila in df_equiv.iterrows():
-        codigos_im_fila = str(fila['codigoIM']).split(';')
-        codigos_im_fila = [c.strip() for c in codigos_im_fila]
+    for _,fila in equivfil.iterrows():
+        
+        presente = True
+        #print(f"{fila.codigoEE},{fila.codigoMI}")
+        if str(fila.codigoMI) != "nan":
+            for codi in fila.codigoMI:
+                presente = presente & (codi in listaMI)
+            if presente: equivOK.append(fila.codigoEE)
 
-        # Verificar que TODOS los códigos estén en codigos_validos
-        if all(codigo in codigos_validos for codigo in codigos_im_fila):
-            coincidencias.append(fila['codigoEE'])
+    listafinal = equiv[equiv.codigoEE.isin(equivOK)].reset_index(drop=True)
+    listafinal.to_csv("hola.csv",index=False)
 
-    return len(coincidencias), coincidencias
+    print(len(listaMI))
+    print(listafinal.shape[0])
 
+semestres = 1
 
+cantidad = obtener_coincidencias_individuales(
+    semestres,
+    mallaMI,
+    equiv,
+)
 
-semestres = int(input("Ingresa la cantidad de semestres: "))
-_, codigos_validos = contar_filas_y_listar_codigos_por_semestre("MI1313.csv", semestres)
-
-cantidad, lista_coincidencias = obtener_coincidencias_completas(codigos_validos, "cursos_equiv.csv")
-
-print(f"Cantidad de coincidencias: {cantidad}")
-print("Lista de codigoEE con coincidencia completa:")
-for i, codigo_ee in enumerate(lista_coincidencias, start=1):
-    print(f"{i}. {codigo_ee}")
 
 
