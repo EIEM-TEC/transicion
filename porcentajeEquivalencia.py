@@ -40,7 +40,7 @@ def obtener_coincidencias_individuales(mallaEE, mallaMI, equiv, semestre):
 
     return totMI, totOK, listafinal
     
-semestre = 2
+semestre = 8
 
 def calcular_porcentajes(totMI,totOK):
     cursosMI = 67

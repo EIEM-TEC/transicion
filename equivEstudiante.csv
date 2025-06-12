@@ -1,12 +1,50 @@
 codigoEE,codigoMI,direccion,nombre
-MA0101,MA0101,1.0,Matemática general
-MA1102,MA1102,1.0,Cálculo diferencial e integral
-FI1101,FI1101,1.0,Física general I
-QU1902,QU1106;QU1107,1.0,Fundamentos de Química
-CI1106,CI1106,1.0,Comunicación escrita
-EE0107,MI2101,1.0,Dibujo técnico
-CA0205,CA2125,0.0,Fundamentos de organización de computadoras
-CI1107,CI1107,1.0,Comunicación oral
-CS1502,CS1502,1.0,Introducción a la técnica ciencia y tecnología
-SE1100,SE1100,1.0,Actividad cultural I
-SE1200,SE1200,1.0,Actividad deportiva I
+MA0101,MA0101,1,Matemática general
+MA1102,MA1102,1,Cálculo diferencial e integral
+FI1101,FI1101,1,Física general I
+FI1201,FI1201,1,Laboratorio de física general I
+QU1902,QU1106;QU1107,1,Fundamentos de química
+CI1106,CI1106,1,Comunicación escrita
+EE0107,MI2101,1,Dibujo técnico
+EE0108,MI4300,0,Introducción a la ingeniería electromecánica
+MA1103,MA1103,1,Cálculo y álgebra lineal
+FI1102,FI1102,1,Física general II
+FI1202,FI1202,1,Laboratorio de física general II
+CA0205,CA2125,0,Fundamentos de organización de computadoras
+CI1107,CI1107,1,Comunicación oral
+EE0207,MI2106,1,Estática
+CS2303,CS2303,1,Relaciones laborales
+CS1502,CS1502,1,Introducción a la técnica ciencia y tecnología
+MA2105,MA2105,1,Ecuaciones diferenciales
+EE0303,MI2205,1,Análisis de circuitos I
+EE0304,MI2202,1,Laboratorio de circuitos I
+EE0307,MI3117,1,Dinámica
+CS3404,CS3404,1,Seminario de ética para la ingeniería
+SE1100,SE1100,1,Actividad cultural I
+MA2104,MA2104,1,Cálculo superior
+CM3207,CM3207,1,Métodos numéricos para ingeniería
+EE0403,MI2207,1,Análisis de circuitos II
+EE0404,MI2204,1,Laboratorio de circuitos II
+EE0407,MI3130,1,Termodinámica
+SE1200,SE1200,1,Actividad deportiva I
+AE4208,AE4208,1,Desarrollo de emprendedores
+PI0502,PI2609,1,Estadística aplicada
+EE0503,MI3209;MI4209,0,Sistemas analógicos
+ME2208,ME3208;ME3209,0,Ciencia de los materiales
+EE0507,MI3103,1,Manufactura
+EE0508,MI3104,1,Laboratorio de manufactura
+CI3202,CI1230;CI1231,0,Inglés para mecatrónica
+EE0602,MI4300;MI4305,0,Fiabilidad y disponibilidad de sistemas electromecánicos
+EE0604,MI3209;MI4209,0,Sistemas digitales
+EE0605,MI3115,1,Resistencia de materiales
+CM4108,CM4108,1,Transferencia de calor
+EE0607,MI3108,1,Mecánica de fluidos
+EE0608,MI3111,1,Laboratorio de mecánica de fluidos
+EE0609,MI3124,1,Dibujo industrial
+EE0702,MI2207;MI3210,0,Máquinas eléctricas I
+EE0703,MI3206,1,Laboratorio de máquinas eléctricas I
+EE0706,MI4136,1,Elementos de máquinas
+SE1400,SE1400,1,Actividad cultural - deportiva
+EE4808,MI4300;MI4305,0,Mantenimiento electromecánico
+EE4906,MI3116,1,Instalaciones mecánico-sanitarias
+EE4907,MI3119,1,Laboratorio de sistemas de fluidos
