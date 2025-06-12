@@ -3,8 +3,8 @@ CIB0001,MA0101,Matemática general,CIB,0,1,5,0,2,,,CIB0101
 CYD0002,CI0205,Prueba avanzada de inglés,CYD,0,2,0,0,0,,,
 CIB0101,MA1102,Cálculo diferencial e integral,CIB,1,1,5,0,4,CIB0001,,CIB0201;CIB0202;CIB0302;CIB0102
 CIB0102,FI1101,Física general I,CIB,1,2,4,0,3,,CIB0101,CIB0202;IMM0207;CIB0302;CIB0103
-CIB0103,FI2201,Laboratorio de física general I,CIB,1,3,0,2,1,,CIB0102,CIB0203
-CIB0104,QU1902,Fundamentos de Química,CIB,1,4,5,0,4,,,IMM0506
+CIB0103,FI1201,Laboratorio de física general I,CIB,1,3,0,2,1,,CIB0102,CIB0203
+CIB0104,QU1902,Fundamentos de química,CIB,1,4,5,0,4,,,IMM0506
 CYD0106,CI1106,Comunicación escrita,CYD,1,6,3,0,2,,,CYD0206
 CYD0107,EE0107,Dibujo técnico,CYD,1,7,1,3,3,,,IMM0207
 FPH0108,EE0108,Introducción a la ingeniería electromecánica,FPH,1,8,2,0,1,,,AUT0205;FPH0208
