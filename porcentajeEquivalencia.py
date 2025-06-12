@@ -1,20 +1,23 @@
 from datetime import datetime
+import pandas as pd
 
 def calcular_semestres(desde_año):
     año_actual = datetime.now().year
     semestres = ((año_actual - desde_año) * 2)+1
     return semestres
 
-import pandas as pd
-
 def contar_filas_y_listar_codigos_por_semestre(ruta_csv, semestres_maximos):
     try:
         df = pd.read_csv(ruta_csv)
 
+        # Verificamos que existan las columnas necesarias
         if 'semestre' not in df.columns or 'codigo' not in df.columns:
-            raise ValueError("El archivo debe contener las columnas 'semestre' y 'codigo'.")
+            raise ValueError("El archivo debe tener columnas 'semestre' y 'codigo'.")
 
+        # Asegurarse de que los valores sean numéricos
         df['semestre'] = pd.to_numeric(df['semestre'], errors='coerce')
+
+        # Filtrar filas con semestre > 0 y <= semestres_maximos
         filtro = (df['semestre'] > 0) & (df['semestre'] <= semestres_maximos)
         df_filtrado = df[filtro]
 
@@ -24,47 +27,38 @@ def contar_filas_y_listar_codigos_por_semestre(ruta_csv, semestres_maximos):
         return cantidad, codigos
 
     except Exception as e:
-        print(f"Error leyendo '{ruta_csv}': {e}")
-        return None, None
+        print(f"Error procesando el archivo: {e}")
+        return 0, []
 
-def buscar_coincidencias_con_todos_los_codigos(codigos_validos, equivalencias_csv):
-    try:
-        df_equiv = pd.read_csv(equivalencias_csv)
+def obtener_coincidencias_completas(codigos_validos, equivalencias_csv):
+    """
+    Revisa fila por fila en cursos_equiv.csv si todos los codigos de codigoIM (separados por ';')
+    están en codigos_validos (lista de MI1313.csv).
+    Retorna la cantidad de coincidencias y la lista de codigoEE que cumplen la condición.
+    """
+    df_equiv = pd.read_csv(equivalencias_csv)
+    coincidencias = []
 
-        if 'codigoIM' not in df_equiv.columns:
-            raise ValueError("La columna 'codigoIM' no está en el archivo de equivalencias.")
+    for _, fila in df_equiv.iterrows():
+        codigos_im_fila = str(fila['codigoIM']).split(';')
+        codigos_im_fila = [c.strip() for c in codigos_im_fila]
 
-        coincidencias = []
+        # Verificar que TODOS los códigos estén en codigos_validos
+        if all(codigo in codigos_validos for codigo in codigos_im_fila):
+            coincidencias.append(fila['codigoEE'])
 
-        for _, fila in df_equiv.iterrows():
-            codigos_en_fila = str(fila['codigoIM']).split(';')
-            codigos_en_fila = [c.strip() for c in codigos_en_fila]
+    return len(coincidencias), coincidencias
 
-            # Solo agregar si TODOS los códigos en la fila están en la lista de códigos válidos
-            if all(codigo in codigos_validos for codigo in codigos_en_fila):
-                coincidencias.append(fila)
 
-        df_coincidencias = pd.DataFrame(coincidencias)
 
-        return df_coincidencias
+semestres = int(input("Ingresa la cantidad de semestres: "))
+_, codigos_validos = contar_filas_y_listar_codigos_por_semestre("MI1313.csv", semestres)
 
-    except Exception as e:
-        print(f"Error leyendo '{equivalencias_csv}': {e}")
-        return pd.DataFrame()
+cantidad, lista_coincidencias = obtener_coincidencias_completas(codigos_validos, "cursos_equiv.csv")
 
-# Ejemplo de uso
-try:
-    semestres_ingresados = int(input("Ingresa la cantidad de semestres: "))
-    
-    cantidad, codigos_filtrados = contar_filas_y_listar_codigos_por_semestre("MI1313.csv", semestres_ingresados)
-
-    if cantidad is not None:
-        print(f"\nCantidad de códigos válidos desde MI1313.csv: {cantidad}")
-        df_resultado = buscar_coincidencias_con_todos_los_codigos(codigos_filtrados, "cursos_equiv.csv")
-
-        print(f"\nSe encontraron {df_resultado.shape[0]} coincidencias (todos los códigos coinciden):")
-        print(df_resultado)
-except ValueError:
-    print("Por favor, ingresa un número válido.")
+print(f"Cantidad de coincidencias: {cantidad}")
+print("Lista de codigoEE con coincidencia completa:")
+for i, codigo_ee in enumerate(lista_coincidencias, start=1):
+    print(f"{i}. {codigo_ee}")
 
 
