@@ -1,0 +1,133 @@
+id,codIEM,nombreIEM,codEquiIMI,nombresIMI,bidireccional
+TRC0001,MA0101,Matemática general,MA0101,Matemática general,Si
+TRC0002,CI0205,Prueba avanzada de inglés,-,-,-
+TRC0101,MA1102,Cálculo diferencial e integral,MA1102,Cálculo diferencial e integral,Si
+TRC0102,FI1101,Física general I,FI1101,Física general I,Si
+TRC0103,FI1201,Laboratorio de física general I,FI1201,Laboratorio de física general I,Si
+TRC0104,QU1902,Fundamentos de química,QU1106 QU1107,Química básica I y Química básica II,No
+TRC0106,CI1106,Comunicación escrita,CI1106,Comunicación escrita,Si
+TRC0107,EE0107,Dibujo técnico,MI2101,Dibujo técnico,Si
+TRC0108,EE0108,Introducción a la ingeniería electromecánica,MI4300,Administración de mantenimiento I,No
+TRC0201,MA1103,Cálculo y álgebra lineal,MA1103,Cálculo y álgebra lineal,Si
+TRC0202,FI1102,Física general II,FI1102,Física general II,Si
+TRC0203,FI1202,Laboratorio de física general II,FI1202,Laboratorio de física general II,Si
+TRC0205,CA0205,Fundamentos de organización de computadoras,CA2125,Elementos de computación,No
+TRC0206,CI1107,Comunicación oral,CI1107,Comunicación oral,Si
+TRC0207,EE0207,Estática,MI2106,Estática,Si
+TRC0208,CS2303,Relaciones laborales,CS2303,Relaciones laborales,Si
+TRC0209,CS1502,Introducción a la técnica ciencia y tecnología,CS1502,Introducción a la técnica ciencia y tecnología,Si
+TRC0301,MA2105,Ecuaciones diferenciales,MA2105,Ecuaciones diferenciales,Si
+TRC0302,FI2103,Física general III,FI2103,Física general III,Si
+TRC0303,EE0303,Análisis de circuitos I,MI2205,Electricidad I,Si
+TRC0304,EE0304,Laboratorio de circuitos I,MI2202,Laboratorio de electricidad I,Si
+TRC0305,EE0305,Transductores,-,-,-
+TRC0307,EE0307,Dinámica,MI3117,Dinámica,Si
+TRC0308,CS3404,Seminario de ética para la ingeniería,CS3404,Seminario de ética en ingeniería,Si
+TRC0309,SE1100,Actividad cultural I,SE1100,Actividad cultural I,Si
+TRC0401,MA2104,Cálculo superior,MA2104,Cálculo superior,Si
+TRC0402,CM3207,Métodos numéricos para ingeniería,CM3207,Métodos numéricos,Si
+TRC0403,EE0403,Análisis de circuitos II,MI2207,Electricidad II,Si
+TRC0404,EE0404,Laboratorio de circuitos II,MI2204,Laboratorio de electricidad II,Si
+TRC0405,EE0405,Instrumentación,-,-,-
+TRC0407,EE0407,Termodinámica,MI3130,Termodinámica,Si
+TRC0408,CS4402,Seminario de estudios costarricenses,CS4402,Seminario de estudios costarricenses,Si
+TRC0409,SE1200,Actividad deportiva I,SE1200,Actividad deportiva I,Si
+TRC0501,AE4208,Desarrollo de emprendedores,AE4208,Desarrollo de emprendedores,Si
+TRC0502,PI0502,Estadística aplicada,PI2609,Probabilidad y estadística,Si
+TRC0503,EE0503,Sistemas analógicos,MI3209 MI4209,Electricidad III y Control eléctrico,No
+TRC0504,EE0504,Modelado y simulación de sistemas,-,-,-
+TRC0506,ME2208,Ciencia de los materiales,ME3208 ME3209,Tecnología de materiales y Laboratorio de tecnología de materiales,No
+TRC0507,EE0507,Manufactura,MI3103,Procesos de manufactura,Si
+TRC0508,EE0508,Laboratorio de manufactura,MI3104,Laboratorio procesos de manufactura,Si
+TRC0601,CI3202,Inglés para mecatrónica,CI1230 CI1231,Inglés I y Inglés II,No
+TRC0602,EE0602,Fiabilidad y disponibilidad de sistemas electromecánicos,MI4300 MI4305,Administración de mantenimiento I y Administración de mantenimiento II,No
+TRC0604,EE0604,Sistemas digitales,MI3209 MI4209,Electricidad III y Control eléctrico,No
+TRC0605,EE0605,Resistencia de materiales,MI3115,Resistencia de materiales,Si
+TRC0606,CM4108,Transferencia de calor,CM4108,Transferencia de calor,Si
+TRC0607,EE0607,Mecánica de fluidos,MI3108,Mecánica de fluidos,Si
+TRC0608,EE0608,Laboratorio de mecánica de fluidos,MI3111,Laboratorio de mecánica de fluidos,Si
+TRC0609,EE0609,Dibujo industrial,MI3124,Dibujo industrial,Si
+TRC0701,EE0701,Administración de proyectos,MI6253,Fundamentos en administración de proyectos en ingeniería,Si
+TRC0702,EE0702,Máquinas eléctricas I,MI2207 MI3210,Electricidad II y Máquinas eléctricas,No
+TRC0703,EE0703,Laboratorio de máquinas eléctricas I,MI3206,Laboratorio de máquinas eléctricas,Si
+TRC0704,EE0704,Control automático,MI6255,Sistemas de control automático,Si
+TRC0705,EE0705,Microcontroladores,-,-,-
+TRC0706,EE0706,Elementos de máquinas,MI4136,Elementos de máquinas,Si
+TRC0707,EE0707,Sistemas térmicos,-,-,-
+TRC0708,EE0708,Laboratorio de sistemas térmicos,-,-,-
+TRC0802,EE0802,Máquinas eléctricas II,-,-,-
+TRC0803,EE0803,Laboratorio de máquinas eléctricas II,-,-,-
+TRC0804,EE0804,Control por eventos discretos,MI4209 MI5411,Control eléctrico y Automatismo,No
+TRC0805,EE0805,Laboratorio de control,MI6255 MI4210,Sistemas de control automático y Laboratorio de control eléctrico,No
+TRC0809,SE1400,Actividad cultural - deportiva,SE1400,Actividad cultural - deportiva,Si
+INS0801,EE4801,Sistemas eléctricos de transmisión y distribución,MI5215,Análisis de sistemas eléctricos de potencia,Si
+INS0806,EE4806,Instalaciones eléctricas,MI4212,Instalaciones eléctricas,Si
+INS0807,EE4807,Ventilación y aire comprimido,MI3116 MI5135,Turbomáquinas y Ventilación industrial,No
+INS0808,EE4808,Mantenimiento electromecánico,MI4300 MI4305,Administración de mantenimiento I y Administración de mantenimiento II,No
+INS0901,EE4901,Sistemas de generación y almacenamiento de energía,-,-,-
+INS0903,EE4903,Sistemas de refrigeración y aire acondicionado,MI4126 MI5152,Refrigeración y Aire acondicionado,No
+INS0904,EE4904,Laboratorio de refrigeración y aire acondicionado,MI4127,Laboratorio de refrigeración,No
+INS0905,EE1101,Seminario de graduación I,-,-,-
+INS0906,EE4906,Instalaciones mecánico-sanitarias,MI3116,Turbomáquinas,Si
+INS0907,EE4907,Laboratorio de sistemas de fluidos,MI3119,Laboratorio de turbomáquinas,Si
+INS0908,EE4908,Sistemas de vapor,MI4129,Sistemas de vapor,Si
+INS0909,EE4909,Laboratorio de sistemas de vapor,MI4125,Laboratorio de sistemas de vapor,Si
+INS1003,EE5003,Gestión de la energía,MI6153,Ahorro energético,Si
+INS1005,EE1102,Seminario de graduación II,-,-,-
+INS1006,EE5006,Gestión del ciclo de vida de instalaciones electromecánicas,MI4305 MI6351,Administración de mantenimiento II y Mantenimiento predictivo,No
+INS1007,EE5007,Neumática y oleohidráulica,MI6252,Neumática,Si
+INS1201,EE5201,Sistemas de puesta a tierra,MI6258,-,Si
+INS1202,EE5202,Sistemas contra incendios,MI6254,Sistemas de protección contra incendios a base de agua,Si
+INS1203,EE5203,Edificios inteligentes,-,-,-
+INS1301,EE6901,Aviónica,-,-,-
+INS1302,EE6801,Sistemas de la aeronave,-,-,-
+INS1303,EE6902,Aerodinámica,-,-,-
+INS1401,EE8907,Automatización y digitalización industrial,-,-,-
+INS1402,EE8807,Aplicaciones de sistemas embebidos,-,-,-
+INS1403,EE8903,Aplicaciones de Inteligencia Artificial,-,-,-
+AER0801,EE6801,Sistemas de la aeronave,-,-,-
+AER0806,EE0806,Máquinas y mecanismos,-,-,-
+AER0807,EE6807,Materiales en aeronáutica,-,-,-
+AER0808,EE6808,Metrología aeronáutica,-,-,-
+AER0901,EE6901,Aviónica,-,-,-
+AER0902,EE6902,Aerodinámica,-,-,-
+AER0903,EE6903,Dinámica de vuelo,-,-,-
+AER0905,EE1101,Seminario de graduación I,-,-,-
+AER0906,EE6906,Análisis mecánico de estructuras de la aeronave,-,-,-
+AER0908,EE6908,Seguridad aeronáutica y aeronavegabilidad,-,-,-
+AER1001,EE7001,Gestión del ciclo de vida de la aeronave,-,-,-
+AER1002,EE7002,Sistemas de propulsión,-,-,-
+AER1003,EE7003,Control automático de vuelo,-,-,-
+AER1005,EE1102,Seminario de graduación II,-,-,-
+AER1201,EE7201,Infraestructura y servicios aeroportuarios,-,-,-
+AER1202,EE7202,Telemetría y comunicaciones para aeronáutica,-,-,-
+AER1203,EE7203,Manufactura en la cadena de valor aeroespacial,-,-,-
+AER1301,EE5006,Gestión del ciclo de vida de instalaciones electromecánicas,MI4305 MI6351,Administración de mantenimiento II y Mantenimiento predictivo,No
+AER1302,EE4806,Instalaciones eléctricas,MI4212,Instalaciones eléctricas,Si
+AER1303,EE5003,Gestión de la energía,MI6153,Ahorro energético,Si
+AER1401,EE8907,Automatización y digitalización industrial,-,-,-
+AER1402,EE8807,Aplicaciones de sistemas embebidos,-,-,-
+AER1403,EE8903,Aplicaciones de Inteligencia Artificial,-,-,-
+SCF0801,EE8104,Ingeniería de sistemas,-,-,-
+SCF0806,EE0806,Máquinas y mecanismos,-,-,-
+SCF0807,EE8807,Aplicaciones de sistemas embebidos,-,-,-
+SCF0808,EE8808,Fundamentos de ciberseguridad,-,-,-
+SCF0901,EE8901,Modelado numérico y simulación computacional,-,-,-
+SCF0902,EE8902,Aplicaciones de circuitos integrados,-,-,-
+SCF0903,EE8903,Aplicaciones de Inteligencia Artificial,-,-,-
+SCF0905,EE1101,Seminario de graduación I,-,-,-
+SCF0906,EE8906,Robótica,-,-,-
+SCF0907,EE8907,Automatización y digitalización industrial,-,-,-
+SCF1001,EE9001,Taller de integración de sistemas,-,-,-
+SCF1002,EE9002,Diseño de interfases humano-máquina,-,-,-
+SCF1005,EE1102,Seminario de graduación II,-,-,-
+SCF1007,EE9007,Visión de máquina,-,-,-
+SCF1201,EE9201,Sistemas autónomos y multiagente,-,-,-
+SCF1202,EE9202,Análisis predictivo de series temporales,-,-,-
+SCF1203,EE9302,Desarrollo de software para aplicaciones críticas,-,-,-
+SCF1301,EE6901,Aviónica,-,-,-
+SCF1302,EE6801,Sistemas de la aeronave,-,-,-
+SCF1303,EE6902,Aerodinámica,-,-,-
+SCF1401,EE5006,Gestión del ciclo de vida de instalaciones electromecánicas,MI4305 MI6351,Administración de mantenimiento II y Mantenimiento predictivo,No
+SCF1402,EE4806,Instalaciones eléctricas,MI4212,Instalaciones eléctricas,Si
+SCF1403,EE5003,Gestión de la energía,MI6153,Ahorro energético,Si

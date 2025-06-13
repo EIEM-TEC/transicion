@@ -17,7 +17,6 @@ def obtener_equiv_semestre(mallaEE, mallaMI, equiv, semestre):
 
     for _,fila in equivfil.iterrows():
         presente = True
-        #print(f"{fila.codigoEE},{fila.codigoMI}")
         if str(fila.codigoMI) != "nan":
             for codi in fila.codigoMI:
                 presente = presente & (codi in listaMI)
