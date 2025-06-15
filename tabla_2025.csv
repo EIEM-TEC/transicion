@@ -1,0 +1,13 @@
+codigoEE,codigoMI,direccion,creditos,nombre,area
+MA0101,MA0101,1.0,2,Matemática general,CIB
+MA1102,MA1102,1.0,4,Cálculo diferencial e integral,CIB
+FI1101,FI1101,1.0,3,Física general I,CIB
+FI1201,FI1201,1.0,1,Laboratorio de física general I,CIB
+QU1902,QU1106;QU1107,0.0,4,Fundamentos de química,CIB
+CI1106,CI1106,1.0,2,Comunicación escrita,CYD
+EE0107,MI2101,1.0,3,Dibujo técnico,CYD
+CA0205,CA2125,0.0,2,Fundamentos de organización de computadoras,AUT
+CI1107,CI1107,1.0,1,Comunicación oral,CYD
+CS1502,CS1502,1.0,1,Introducción a la técnica ciencia y tecnología,FPH
+SE1100,SE1100,1.0,0,Actividad cultural I,FPH
+SE1200,SE1200,1.0,0,Actividad deportiva I,FPH

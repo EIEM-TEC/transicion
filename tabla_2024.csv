@@ -1,0 +1,26 @@
+codigoEE,codigoMI,direccion,creditos,nombre,area
+MA0101,MA0101,1.0,2,Matemática general,CIB
+MA1102,MA1102,1.0,4,Cálculo diferencial e integral,CIB
+FI1101,FI1101,1.0,3,Física general I,CIB
+FI1201,FI1201,1.0,1,Laboratorio de física general I,CIB
+QU1902,QU1106;QU1107,0.0,4,Fundamentos de química,CIB
+CI1106,CI1106,1.0,2,Comunicación escrita,CYD
+EE0107,MI2101,1.0,3,Dibujo técnico,CYD
+MA1103,MA1103,1.0,4,Cálculo y álgebra lineal,CIB
+FI1102,FI1102,1.0,3,Física general II,CIB
+FI1202,FI1202,1.0,1,Laboratorio de física general II,CIB
+CA0205,CA2125,0.0,2,Fundamentos de organización de computadoras,AUT
+CI1107,CI1107,1.0,1,Comunicación oral,CYD
+EE0207,MI2106,1.0,3,Estática,IMM
+CS2303,CS2303,1.0,2,Relaciones laborales,FPH
+CS1502,CS1502,1.0,1,Introducción a la técnica ciencia y tecnología,FPH
+EE0303,MI2205,1.0,3,Análisis de circuitos I,IEE
+EE0304,MI2202,1.0,1,Laboratorio de circuitos I,IEE
+SE1100,SE1100,1.0,0,Actividad cultural I,FPH
+MA2104,MA2104,1.0,4,Cálculo superior,CIB
+SE1200,SE1200,1.0,0,Actividad deportiva I,FPH
+EE0507,MI3103,1.0,2,Manufactura,IMM
+EE0508,MI3104,1.0,2,Laboratorio de manufactura,IMM
+CI3202,CI1230;CI1231,0.0,1,Inglés para mecatrónica,CYD
+EE0609,MI3124,1.0,3,Dibujo industrial,CYD
+SE1400,SE1400,1.0,0,Actividad cultural - deportiva,FPH

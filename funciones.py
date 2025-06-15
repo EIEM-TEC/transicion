@@ -35,11 +35,11 @@ def calcular_porcentajes(creditosIMI, creditosTRC, creditosINS, creditosAER, cre
     totcreditosIMI = 177
     totcreditosTRC = 135
     totcreditosENF = 180
-    porcIMI = round(creditosIMI*100/totcreditosIMI,1)
-    porcTRC = round(creditosTRC*100/totcreditosTRC,1)
-    porcINS = round(creditosINS*100/totcreditosENF,1)
-    porcAER = round(creditosAER*100/totcreditosENF,1)
-    porcSCF = round(creditosSCF*100/totcreditosENF,1)
+    porcIMI = round(creditosIMI/totcreditosIMI,3)
+    porcTRC = round(creditosTRC/totcreditosTRC,3)
+    porcINS = round(creditosINS/totcreditosENF,3)
+    porcAER = round(creditosAER/totcreditosENF,3)
+    porcSCF = round(creditosSCF/totcreditosENF,3)
 
     return porcIMI, porcTRC, porcINS, porcAER, porcSCF
 
