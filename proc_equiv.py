@@ -2,7 +2,7 @@ import pandas as pd
 
 TRClist = ["ADD","AUT","CIB","CYD","FPH","IEE","IMM"]
 
-mallaEE = pd.read_csv("malla_EE.csv")
+mallaEE = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/cursos/cursos_malla.csv")
 mallaMI = pd.read_csv("malla_MI.csv")
 mallaMInom =pd.read_csv("cursos_MI.csv")
 equiv = pd.read_csv("equivalencias.csv")
@@ -16,6 +16,8 @@ equiv['id'] = equiv['area'] + equiv['id']
 equiv = equiv.merge(mallaMInom[["codigo", "nombre"]], left_on="codigoMI", right_on="codigo", how="left").drop(columns=["codigo"])
 equiv.rename(columns={'codigoEE': 'codIEM', 'codigoMI': 'codEquiIMI', 'direccion': 'bidireccional', 'nombre_x': 'nombreIEM', 'nombre_y': 'nombresIMI'}, inplace=True)
 equiv = equiv.fillna('-')
+print(equiv)
+equiv['codEquiIMI'] = equiv['codEquiIMI'].apply(lambda x: x + f" ({mallaMI[mallaMI["codigo"]==x].creditos.iloc[0]})" if x != '-' and not mallaMI[mallaMI['codigo'] == x].empty else x)
 equiv = equiv.groupby('id', as_index=False).agg({
     'area': 'first',
     'codIEM': 'first',
@@ -24,6 +26,7 @@ equiv = equiv.groupby('id', as_index=False).agg({
     'nombresIMI': lambda x: ' y '.join(x.unique()),
     'bidireccional': 'first',
 })
+equiv['codIEM'] = equiv['codIEM'].apply(lambda x: x + f"   ({mallaEE[mallaEE["codigo"]==x].creditos.iloc[0]})")
 equiv['bidireccional'] = equiv['bidireccional'].map({1: 'Si', 0: 'No'})
 equiv = equiv.fillna('-')
 area_order = ['TRC', 'INS', 'AER', 'SCF']
@@ -32,6 +35,5 @@ equiv = equiv.sort_values(by=['area', 'id']).reset_index(drop=True).drop(columns
 
 
 #equivnom = equivnom[[]]
-print(equiv.head(50))
 
 equiv.to_csv("equivalencias_nombre.csv",index=False)
