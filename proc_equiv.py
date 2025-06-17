@@ -26,9 +26,9 @@ equiv = equiv.groupby('id', as_index=False).agg({
     'nombresIMI': lambda x: ' y '.join(x.unique()),
     'bidireccional': 'first',
 })
-equiv['codIEM'] = equiv['codIEM'].apply(lambda x: x + f"   ({mallaEE[mallaEE["codigo"]==x].creditos.iloc[0]})")
-equiv['bidireccional'] = equiv['bidireccional'].map({1: 'Si', 0: 'No'})
 equiv = equiv.fillna('-')
+equiv['codIEM'] = equiv['codIEM'].apply(lambda x: x + f"   ({mallaEE[mallaEE["codigo"]==x].creditos.iloc[0]})" if x != '-' and not mallaEE[mallaEE['codigo'] == x].empty else x)
+equiv['bidireccional'] = equiv['bidireccional'].map({1: 'Si', 0: 'No'})
 area_order = ['TRC', 'INS', 'AER', 'SCF']
 equiv['area'] = pd.Categorical(equiv['area'], categories=area_order, ordered=True)
 equiv = equiv.sort_values(by=['area', 'id']).reset_index(drop=True).drop(columns="area")
