@@ -1,0 +1,62 @@
+import funciones as fun
+import pandas as pd
+
+
+
+
+#mallaEE = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/cursos/cursos_malla.csv")
+mallaEE = pd.read_csv("cursos_malla.csv")
+mallaMI = pd.read_csv("malla_MI.csv")
+equiv = pd.read_csv("equivalencias.csv")
+est = pd.read_csv("datos\\2021_2025.csv")
+
+
+def aprobadas_carne(carnet):
+    estudiante = est[est["Carnet"]==carnet].copy()
+    nombre = estudiante.Nombre.item()
+    estudiante.drop(columns=["Año de Ingreso al TEC","Carnet","Nombre"],inplace=True)
+    cursos = estudiante.transpose().dropna().index.tolist()
+    return cursos, nombre
+
+
+carnetmare = 2021023053
+carnetangi = 2023234861
+
+
+def por_carnet(carnet):
+    lista ,nombre= aprobadas_carne(carnet)
+    creditosIMI,\
+    creditosTRC,\
+    creditosINS,\
+    creditosAER,\
+    creditosSCF,\
+    equivfinal=\
+    fun.obtener_equiv_lista(
+        mallaEE,
+        mallaMI,
+        equiv,
+        lista,
+    )
+    porcIMI,\
+    porcTRC,\
+    porcINS,\
+    porcAER,\
+    porcSCF=\
+    fun.calcular_porcentajes(
+        creditosIMI,
+        creditosTRC,
+        creditosINS,
+        creditosAER,
+        creditosSCF,
+    )
+    print(f"\nPara {nombre}:")
+    print(f"Créditos en IMI: {creditosIMI}, porcentaje: {porcIMI*100} %")
+    print(f"Créditos en TRC: {creditosTRC}, porcentaje: {porcTRC*100} %")
+    print(f"Créditos en INS: {creditosINS}, porcentaje: {porcINS*100} %")
+    print(f"Créditos en AER: {creditosAER}, porcentaje: {porcAER*100} %")
+    print(f"Créditos en SCF: {creditosSCF}, porcentaje: {porcSCF*100} %\n")
+    return equivfinal
+
+por_carnet(carnetmare)
+
+por_carnet(carnetangi)
