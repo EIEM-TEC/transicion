@@ -67,4 +67,11 @@ def calcular_porcentajes(creditosIMI, creditosTRC, creditosINS, creditosAER, cre
 
     return porcIMI, porcTRC, porcINS, porcAER, porcSCF
 
+def aprobadas_carne(carnet, estudiantes):
+    estudiante = estudiantes[estudiantes["Carnet"]==carnet].copy()
+    nombre = estudiante.Nombre.item()
+    estudiante.drop(columns=["Año de Ingreso al TEC","Carnet","Nombre"],inplace=True)
+    cursos = estudiante.transpose().dropna().index.tolist()
+    return cursos, nombre
+
 
