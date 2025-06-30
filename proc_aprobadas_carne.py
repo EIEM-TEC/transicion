@@ -177,17 +177,18 @@ def por_carnet(carnet,estudiantes):
         creditosSCF,
     )
     print(f"\nPara {nombre}:")
-    print(f"Créditos en IMI: {creditosIMI}, porcentaje: {porcIMI*100} %")
-    print(f"Créditos en TRC: {creditosTRC}, porcentaje: {porcTRC*100} %")
-    print(f"Créditos en INS: {creditosINS}, porcentaje: {porcINS*100} %")
-    print(f"Créditos en AER: {creditosAER}, porcentaje: {porcAER*100} %")
-    print(f"Créditos en SCF: {creditosSCF}, porcentaje: {porcSCF*100} %\n")
+    print(f"Créditos en IMI: {creditosIMI}, porcentaje: {round(porcIMI*100,2)} %")
+    print(f"Créditos en TRC: {creditosTRC}, porcentaje: {round(porcTRC*100,2)} %")
+    print(f"Créditos en INS: {creditosINS}, porcentaje: {round(porcINS*100,2)} %")
+    print(f"Créditos en AER: {creditosAER}, porcentaje: {round(porcAER*100,2)} %")
+    print(f"Créditos en SCF: {creditosSCF}, porcentaje: {round(porcSCF*100,2)} %\n")
     return equivfinal
 
 
 
-carnet = 2021023053 #mare
+#carnet = 2021023053 #mare
 #carnet = 2023234861 #angie
+carnet = 2022055783 # kendall
 
 estudiante = por_carnet(carnet,estudiantes)
 print(estudiante)
