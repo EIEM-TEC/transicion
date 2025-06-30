@@ -7,7 +7,7 @@ from pylatex import Document, Package, Command, PageStyle, Head, Foot, NewPage,\
     LongTable
 from pylatex.base_classes import Environment, Arguments
 from pylatex.utils import NoEscape, bold, italic
-import funciones_malla as fun
+import funciones as fun
 
 cursos = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/cursos/cursos_malla.csv",
     dtype = {'id':str,'codigo':str,'nombre':str,'area':str,'semestre':int,'fila':int,'horasTeoria':int,'horasPractica':int,'creditos':int})
@@ -144,7 +144,7 @@ def generar_malla(año):
                 )
         )) as malla_TRC:
         titulo = "Tronco común de Licenciatura en Ingeniería Electromecánica y salida lateral de Bachillerato en Ingeniería Electromecánica"
-        fun.malla_enf(malla_TRC,cursos,sesgo,TRC,titulo,rango,False,año)
+        fun.malla_año(malla_TRC,cursos,sesgo,TRC,titulo,rango,False,año)
     doc.append(NoEscape(r"\newpage"))
     sesgo = 7
     rango = range(7,11)
@@ -156,7 +156,7 @@ def generar_malla(año):
                 )
         )) as malla_INS:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Instalaciones Electromecánicas"
-        fun.malla_enf(malla_INS,cursos,sesgo,INS,titulo,rango,True,año)
+        fun.malla_año(malla_INS,cursos,sesgo,INS,titulo,rango,True,año)
     doc.append(NoEscape(r"\newpage"))
     with doc.create(TikZ(
             options=TikZOptions
@@ -166,7 +166,7 @@ def generar_malla(año):
                 )
         )) as malla_AER:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Aeronáutica"
-        fun.malla_enf(malla_AER,cursos,sesgo,AER,titulo,rango,True,año)
+        fun.malla_año(malla_AER,cursos,sesgo,AER,titulo,rango,True,año)
     doc.append(NoEscape(r"\newpage"))
     with doc.create(TikZ(
             options=TikZOptions
@@ -176,7 +176,7 @@ def generar_malla(año):
                 )
         )) as malla_SCF:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Sistemas Ciberfísicos"
-        fun.malla_enf(malla_SCF,cursos,sesgo,SCF,titulo,rango,True,año)
+        fun.malla_año(malla_SCF,cursos,sesgo,SCF,titulo,rango,True,año)
     doc.generate_pdf(f"malla_EM_{año}", clean=True, clean_tex=False, compiler='lualatex',silent=True)
     
 generar_malla("2025")

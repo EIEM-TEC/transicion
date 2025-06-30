@@ -7,11 +7,13 @@ from pylatex.utils import NoEscape, bold, italic
 
 
 
-mallaEE = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/cursos/cursos_malla.csv")
-#mallaEE = pd.read_csv("cursos_malla.csv")
+cursos = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/cursos/cursos_malla.csv")
+#cursos = pd.read_csv("cursos_malla.csv")
 mallaMI = pd.read_csv("malla_MI.csv")
+cursos['sevesreq'] = cursos['creditos'] * 0.0
+cursos['sevreq'] = cursos['creditos'] * 0.0
 equiv = pd.read_csv("equivalencias.csv")
-est = pd.read_csv("datos\\2021_2025.csv")
+estudiantes = pd.read_csv("datos\\2021_2025.csv")
 
 areas = pd.read_csv("https://raw.githubusercontent.com/EIEM-TEC/CLIE/refs/heads/main/areas.csv")
 
@@ -20,7 +22,7 @@ INS = ["CIB","FPH","CYD","IEE","IMM","AUT","ADD","INS"]
 AER = ["CIB","FPH","CYD","IEE","IMM","AUT","ADD","AER"]
 SCF = ["CIB","FPH","CYD","IEE","IMM","AUT","ADD","SCF"]
 
-def generar_malla_carnet(mallaEE,lista):
+def generar_malla_carnet(cursos,lista,carnet):
     #Geometría
     geometry_options = { 
         "left": "0mm",
@@ -113,7 +115,7 @@ def generar_malla_carnet(mallaEE,lista):
                 )
         )) as malla_TRC:
         titulo = "Tronco común de Licenciatura en Ingeniería Electromecánica y salida lateral de Bachillerato en Ingeniería Electromecánica"
-        fun.malla_enf(malla_TRC,mallaEE,sesgo,TRC,titulo,rango,False,año)
+        fun.malla_carnet(malla_TRC,cursos,sesgo,TRC,titulo,rango,False)
     doc.append(NoEscape(r"\newpage"))
     sesgo = 7
     rango = range(7,11)
@@ -125,7 +127,7 @@ def generar_malla_carnet(mallaEE,lista):
                 )
         )) as malla_INS:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Instalaciones Electromecánicas"
-        fun.malla_enf(malla_INS,mallaEE,sesgo,INS,titulo,rango,True,año)
+        fun.malla_carnet(malla_INS,cursos,sesgo,INS,titulo,rango,True)
     doc.append(NoEscape(r"\newpage"))
     with doc.create(TikZ(
             options=TikZOptions
@@ -135,7 +137,7 @@ def generar_malla_carnet(mallaEE,lista):
                 )
         )) as malla_AER:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Aeronáutica"
-        fun.malla_enf(malla_AER,mallaEE,sesgo,AER,titulo,rango,True,año)
+        fun.malla_carnet(malla_AER,cursos,sesgo,AER,titulo,rango,True)
     doc.append(NoEscape(r"\newpage"))
     with doc.create(TikZ(
             options=TikZOptions
@@ -145,8 +147,8 @@ def generar_malla_carnet(mallaEE,lista):
                 )
         )) as malla_SCF:
         titulo = "Licenciatura en Ingeniería Electromecánica con énfasis en Sistemas Ciberfísicos"
-        fun.malla_enf(malla_SCF,cursos,sesgo,SCF,titulo,rango,True,año)
-    doc.generate_pdf(f"malla_EM_{año}", clean=True, clean_tex=False, compiler='lualatex',silent=True)
+        fun.malla_carnet(malla_SCF,cursos,sesgo,SCF,titulo,rango,True)
+    doc.generate_pdf(f"malla_EM_{carnet}", clean=True, clean_tex=False, compiler='lualatex',silent=True)
 
 def por_carnet(carnet,estudiantes):
     lista ,nombre= fun.aprobadas_carne(carnet,estudiantes)
@@ -157,7 +159,7 @@ def por_carnet(carnet,estudiantes):
     creditosSCF,\
     equivfinal=\
     fun.obtener_equiv_lista(
-        mallaEE,
+        cursos,
         mallaMI,
         equiv,
         lista,
@@ -184,10 +186,18 @@ def por_carnet(carnet,estudiantes):
 
 
 
-carnetmare = 2021023053
-carnetangi = 2023234861
+carnet = 2021023053 #mare
+#carnet = 2023234861 #angie
+
+estudiante = por_carnet(carnet,estudiantes)
+print(estudiante)
+lista_aprob_est = estudiante["codigoEE"].unique()
+
+cursosest = cursos
+cursosest["aprobadas"] = cursosest["codigo"].apply(lambda x: "A" if x in lista_aprob_est else "P")
 
 
-por_carnet(carnetmare,est)
+generar_malla_carnet(cursos,cursosest,carnet)
 
-por_carnet(carnetangi,est)
+
+# por_carnet(carnetangi,est)
