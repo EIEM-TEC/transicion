@@ -1,5 +1,5 @@
 import pandas as pd
-from pylatex import Document, Package, Section, Command, Tabularx, PageStyle, Head, Foot, NewPage,\
+from pylatex import Document, Package, Section, Subsection, Command, Tabularx, LongTabularx, PageStyle, Head, Foot, NewPage,\
     TextColor, MiniPage, StandAloneGraphic, simple_page_number,\
     TikZ, TikZScope, TikZNode, TikZOptions, TikZCoordinate, TikZNodeAnchor, TikZPath,\
     UnsafeCommand,\
@@ -94,39 +94,61 @@ def generar_reporte(carnet,estudiantes,cursos,mallaMI,equiv):
     # doc.packages.append(Package(name="multirow"))
     # doc.packages.append(Package(name="fancyhdr"))
     # doc.preamble.append(NoEscape(r'\usetikzlibrary{arrows.meta}'))  
+    # Set LongTabularx to have no space between tables and to be left aligned
+    doc.preamble.append(NoEscape(r'\setlength{\LTpre}{0pt}'))
+    doc.preamble.append(NoEscape(r'\setlength{\LTpost}{0pt}'))
+    doc.preamble.append(NoEscape(r'\setlength\LTleft{0pt}'))
+    doc.preamble.append(NoEscape(r'\setlength\LTright{0pt}'))
 
-    with doc.create(Section('Información del estudiante', numbering=False)):
-        with doc.create(Tabularx(table_spec=r"p{4cm}p{10cm}")) as table:
-            table.add_row(["Carnet:",str(carnet)])
-            table.add_row(["Nombre:",nombre])
+    with doc.create(Subsection('Información del estudiante', numbering=False)):
+        doc.append(bold("Carnet: "))
+        doc.append(str(carnet))
         doc.append(NewLine())
-        with doc.create(Tabularx(table_spec=r"p{10cm}p{4cm}")) as table:
-            table.add_row(["Créditos aprobados en Mantenimiento Industrial:", str(creditosIMI)])
-            table.add_row(["Créditos reconocidos en el tronco común:", str(creditosTRC)])
-            table.add_row(["Créditos reconocidos en INS:", str(creditosINS)])
-            table.add_row(["Créditos reconocidos en AER:", str(creditosAER)])
-            table.add_row(["Créditos reconocidos en SCF:", str(creditosSCF)])
+        doc.append(bold("Nombre: "))
+        doc.append(nombre)
         doc.append(NewLine())
-        doc.append(NewLine())
-        doc.append('Nota: Este reporte se genera a partir de la información de los cursos aprobados por el estudiante, y puede no reflejar el estado actual del estudiante en el sistema académico.')
+        doc.append(bold("Créditos aprobados: "))
+        doc.append(str(creditosIMI))
 
-    # Add a subsection
-    with doc.create(Section('Materias reconocidas', numbering=False)):
+    with doc.create(Subsection('Créditos reconocidos', numbering=False)):
+        doc.append(bold("Tronco común y bachillerato: "))
+        doc.append(str(creditosTRC))
+        doc.append(NewLine())
+        doc.append(bold("Énfasis Instalaciones Electromecánicas: "))
+        doc.append(str(creditosINS))
+        doc.append(NewLine())
+        doc.append(bold("Énfasis Aeronaútica: "))
+        doc.append(str(creditosAER))
+        doc.append(NewLine())
+        doc.append(bold("Énfasis Sistemas Ciberfísicos: "))
+        doc.append(str(creditosSCF))
+    with doc.create(Subsection('Materias reconocidas', numbering=False)):
+        doc.append(VerticalSpace("0.5cm"))
         for _,row in equiv.iterrows():
             with doc.create(Tabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
                 table.add_row([bold(row.codigoEE),f"{row.nombre} ({row.creditos})"])
                 table.add_row(["",bold("Reconocido por: ")])
-            doc.append(NewLine())
             with doc.create(Tabularx(table_spec=r"p{1.5cm}p{1.5cm}p{10cm}")) as table:
                 codigosMI = row.codigoMI.split(';')
                 for codigo in codigosMI:
                     table.add_row(["",codigo,f"{cursosMI[cursosMI['codigo']==codigo]['nombre'].item()} ({mallaMI[mallaMI['codigo']==codigo]['creditos'].item()})"])
-            doc.append(NewLine())
-            doc.append(NewLine())
-        doc.append(NewLine())
         doc.append('Nota: Cantidad de créditos mostrada entre paréntesis.')
 
-    doc.generate_pdf(f"reportes\\{nombre}", clean=True, clean_tex=True, compiler='lualatex',silent=True)
+    with doc.create(Section('Materias pendientes', numbering=False)):
+        with doc.create(Subsection('Tronco común y bachillerato', numbering=False)):
+            with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                for _,row in cursos[cursos['area'].isin(TRC)].iterrows():
+                    if row.codigo not in lista:
+                        table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+        with doc.create(Subsection('Énfasis Instalaciones Electromecánicas', numbering=False)):
+            with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                for _,row in cursos[cursos['area'].isin(INS)].iterrows():
+                    if row.codigo not in lista:
+                        table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+                        
+
+    doc.generate_pdf(f"reportes\\{nombre}", clean=True, clean_tex=False, compiler='lualatex',silent=True)
+
 
 
 carnet = 2022055783 # kendall
