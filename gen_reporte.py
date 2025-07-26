@@ -1,5 +1,5 @@
 import pandas as pd
-from pylatex import Document, Package, Section, Subsection, Command, Tabularx, LongTabularx, PageStyle, Head, Foot, NewPage,\
+from pylatex import Document, Package, Section, Subsection, Subsubsection, Command, Tabularx, LongTabularx, PageStyle, Head, Foot, NewPage,\
     TextColor, MiniPage, StandAloneGraphic, simple_page_number,\
     TikZ, TikZScope, TikZNode, TikZOptions, TikZCoordinate, TikZNodeAnchor, TikZPath,\
     UnsafeCommand,\
@@ -100,7 +100,7 @@ def generar_reporte(carnet,estudiantes,cursos,mallaMI,equiv):
     doc.preamble.append(NoEscape(r'\setlength\LTleft{0pt}'))
     doc.preamble.append(NoEscape(r'\setlength\LTright{0pt}'))
 
-    with doc.create(Subsection('Información del estudiante', numbering=False)):
+    with doc.create(Section('Información del estudiante', numbering=False)):
         doc.append(bold("Carnet: "))
         doc.append(str(carnet))
         doc.append(NewLine())
@@ -110,19 +110,19 @@ def generar_reporte(carnet,estudiantes,cursos,mallaMI,equiv):
         doc.append(bold("Créditos aprobados: "))
         doc.append(str(creditosIMI))
 
-    with doc.create(Subsection('Créditos reconocidos', numbering=False)):
+    with doc.create(Section('Créditos reconocidos', numbering=False)):
         doc.append(bold("Tronco común y bachillerato: "))
         doc.append(str(creditosTRC))
         doc.append(NewLine())
         doc.append(bold("Énfasis Instalaciones Electromecánicas: "))
-        doc.append(str(creditosINS))
+        doc.append(str(creditosINS-creditosTRC))
         doc.append(NewLine())
         doc.append(bold("Énfasis Aeronaútica: "))
-        doc.append(str(creditosAER))
+        doc.append(str(creditosAER-creditosTRC))
         doc.append(NewLine())
         doc.append(bold("Énfasis Sistemas Ciberfísicos: "))
-        doc.append(str(creditosSCF))
-    with doc.create(Subsection('Materias reconocidas', numbering=False)):
+        doc.append(str(creditosSCF-creditosTRC))
+    with doc.create(Section('Materias reconocidas', numbering=False)):
         doc.append(VerticalSpace("0.5cm"))
         for _,row in equiv.iterrows():
             with doc.create(Tabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
@@ -133,24 +133,60 @@ def generar_reporte(carnet,estudiantes,cursos,mallaMI,equiv):
                 for codigo in codigosMI:
                     table.add_row(["",codigo,f"{cursosMI[cursosMI['codigo']==codigo]['nombre'].item()} ({mallaMI[mallaMI['codigo']==codigo]['creditos'].item()})"])
         doc.append('Nota: Cantidad de créditos mostrada entre paréntesis.')
-
     with doc.create(Section('Materias pendientes', numbering=False)):
-        with doc.create(Subsection('Tronco común y bachillerato', numbering=False)):
+        with doc.create(Subsection(f'Tronco común y bachillerato ({135-creditosTRC})', numbering=False)):
+            doc.append(VerticalSpace("0.2cm"))
             with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
                 for _,row in cursos[cursos['area'].isin(TRC)].iterrows():
-                    if row.codigo not in lista:
+                    if row.codigo not in equiv['codigoEE'].tolist():
                         table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
-        with doc.create(Subsection('Énfasis Instalaciones Electromecánicas', numbering=False)):
-            with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
-                for _,row in cursos[cursos['area'].isin(INS)].iterrows():
-                    if row.codigo not in lista:
-                        table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+        with doc.create(Subsection(f'Énfasis Instalaciones Electromecánicas ({45 - (creditosINS-creditosTRC)})', numbering=False)):
+            with doc.create(Subsubsection(f"Obligatorias", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="INS"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre <= 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+            with doc.create(Subsubsection(f"Electivas (se deben llevar dos)", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="INS"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre > 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+        with doc.create(Subsection(f'Énfasis Aeronáutica ({45 - (creditosAER-creditosTRC)})', numbering=False)):
+            with doc.create(Subsubsection(f"Obligatorias", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="AER"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre <= 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+            with doc.create(Subsubsection(f"Electivas (se deben llevar dos)", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="AER"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre > 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+        with doc.create(Subsection(f'Énfasis Sistemas Ciberfísicos ({45 - (creditosSCF-creditosTRC)})', numbering=False)):
+            with doc.create(Subsubsection(f"Obligatorias", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="SCF"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre <= 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
+            with doc.create(Subsubsection(f"Electivas (se deben llevar dos)", numbering=False)):
+                doc.append(VerticalSpace("0.2cm"))
+                with doc.create(LongTabularx(table_spec=r"p{1.5cm}p{10cm}")) as table:
+                    for _,row in cursos[cursos['area']=="SCF"].iterrows():
+                        if (row.codigo not in equiv['codigoEE'].tolist()) and (row.codigo not in ["EE1103","EE1104"]) and (row.semestre > 10):
+                            table.add_row([bold(row.codigo),f"{row.nombre} ({row.creditos})"])
                         
 
     doc.generate_pdf(f"reportes\\{nombre}", clean=True, clean_tex=False, compiler='lualatex',silent=True)
 
 
+carnet = 2021023053 #mare
+#carnet = 2023234861 #angie
+#carnet = 2022055783 # kendall
 
-carnet = 2022055783 # kendall
     
 generar_reporte(carnet, estudiantes, cursos, mallaMI, equiv)
